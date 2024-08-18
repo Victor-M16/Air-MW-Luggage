@@ -7,7 +7,8 @@
     
     <!-- Bootstrap CSS CDN -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <!-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> -->
+
 </head>
 <body>
     <header>
@@ -31,6 +32,6 @@
 
 
     <!-- Include Compiled JavaScript -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    <!-- <script src="{{ mix('js/app.js') }}"></script> -->
 </body>
 </html>
