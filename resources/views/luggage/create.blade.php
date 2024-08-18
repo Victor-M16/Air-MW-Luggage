@@ -5,6 +5,15 @@
 @section('content')
 <div class="container mt-4">
     <h1 class="mb-4">Register Luggage</h1>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 
     <!-- Form to enter customer and luggage details -->
     <form action="{{ route('luggage.store') }}" method="POST" class="mb-4">
