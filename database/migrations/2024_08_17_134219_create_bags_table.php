@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('bags', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('customer_id'); // Foreign key column
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->string('bag_description')->nullable();
             $table->string('qr_code')->nullable(); // Path or URL to QR code image
             $table->timestamps();

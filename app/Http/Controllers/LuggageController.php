@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Bag;
 use App\Models\LuggageItem;
+use App\Models\Customer;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
@@ -15,6 +17,18 @@ use Endroid\QrCode\Writer\PngWriter;
 
 class LuggageController extends Controller
 {
+    public function create()
+    {
+        // Display a list of luggage items or a form to add new items
+        return view('luggage.create');
+    }
+
+    public function success()
+    {
+        // Display a list of luggage items or a form to add new items
+        return view('luggage.success');
+    }
+
     public function index()
     {
         // Display a list of luggage items or a form to add new items
@@ -23,62 +37,42 @@ class LuggageController extends Controller
 
     public function store(Request $request)
     {
+        Log::info('Request received:', $request->all());
+    
         // Validate the request
-        $request->validate([
-            'departure_point' => 'required|string|max:255',
-            'destination' => 'required|string|max:255',
-            'ticket_number' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:20',
-            'items' => 'required|array',
-            'items.*.description' => 'required|string|max:255',
-            'items.*.characteristic1' => 'required|string|max:255',
-            'items.*.characteristic2' => 'required|string|max:255',
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'ticket_number' => 'required|string',
+            'bags.*.description' => 'required|string',
+            'bags.*.items.*.char1' => 'required|string',
+            'bags.*.items.*.char2' => 'required|string',
+            'bags.*.items.*.char3' => 'required|string',
         ]);
-
-        // Store luggage information
-        $luggage = new LuggageItem();
-        $luggage->departure_point = $request->departure_point;
-        $luggage->destination = $request->destination;
-        $luggage->ticket_number = $request->ticket_number;
-        $luggage->email = $request->email;
-        $luggage->phone = $request->phone;
-        $luggage->save();
-
-        foreach ($request->items as $item) {
-            $luggage->items()->create($item);
+    
+        // Create or find the customer
+        $customer = Customer::firstOrCreate(['email' => $validatedData['email']]);
+    
+        // Loop through each bag
+        foreach ($validatedData['bags'] as $bagData) {
+            $bag = new Bag();
+            $bag->bag_description = $bagData['description'];
+            $bag->customer_id = $customer->id;
+            $bag->save();
+    
+            // Loop through each item in the bag
+            foreach ($bagData['items'] as $itemData) {
+                $luggageItem = new LuggageItem();
+                $luggageItem->bag_id = $bag->id;
+                $luggageItem->characteristic_1 = $itemData['char1'];
+                $luggageItem->characteristic_2 = $itemData['char2'];
+                $luggageItem->characteristic_3 = $itemData['char3'];
+                $luggageItem->save();
+            }
         }
-
-        // Generate QR code
-        $result = Builder::create()
-            ->writer(new PngWriter())
-            ->writerOptions([])
-            ->data('Luggage ID: ' . $luggage->id)
-            ->encoding(new Encoding('UTF-8'))
-            ->errorCorrectionLevel(ErrorCorrectionLevel::High)
-            ->size(300)
-            ->margin(10)
-            ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
-            ->logoPath(public_path('assets/symfony.png')) // Update the logo path as needed
-            ->logoResizeToWidth(50)
-            ->logoPunchoutBackground(true)
-            ->labelText('Luggage QR Code')
-            ->labelFont(new NotoSans(20))
-            ->labelAlignment(LabelAlignment::Center)
-            ->validateResult(false)
-            ->build();
-
-        // Save QR code to a file
-        $filePath = 'qrcodes/luggage_' . $luggage->id . '.png';
-        $result->saveToFile(public_path($filePath));
-
-        // Provide the path to the QR code image
-        $luggage->qr_code_url = $filePath;
-        $luggage->save();
-
-        // Return a view with the QR code URL
-        return view('luggage.show', ['luggage' => $luggage]);
+    
+        return redirect()->route('luggage.index')->with('status', 'Luggage registered successfully!');
     }
+    
 
     public function show($id)
     {
@@ -96,4 +90,7 @@ class LuggageController extends Controller
                               ->get();
         return view('luggage.search', compact('luggage'));
     }
+
+
+
 }
