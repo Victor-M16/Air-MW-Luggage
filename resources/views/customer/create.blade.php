@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2>Register Customer</h2>
+    <h2>Buy A Ticket</h2>
 
     @if(session('status'))
         <div class="alert alert-success">

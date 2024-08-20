@@ -8,7 +8,7 @@
     @if($trips->isEmpty())
         <p>No trips found matching your query.</p>
     @else
-        <table>
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Customer Name</th>

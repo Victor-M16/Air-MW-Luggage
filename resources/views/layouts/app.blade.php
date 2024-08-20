@@ -19,6 +19,11 @@
             border-color: #3da540;
         }
 
+        .btn-custom {
+            background-color: #3da540;
+            color: white;
+        }
+
         .btn-outline-custom:hover {
             background-color: #3da540;
             color: white;
@@ -46,10 +51,10 @@
         .navbar-toggler {
             border-color: rgba(255, 255, 255, 0.5);
         }
-        .navbar-toggler-icon {
+        /* .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='white' class='bi bi-list' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.5 12.5a.5.5 0 0 1 .5.5h12a.5.5h0 0 1 0 1H2a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5.5h12a.5.5h0 0 1 0 1H2a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5.5h12a.5.5 0 0 1 0 1H2a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
-        }
-        .navbar-collapse.collapse.show {
+        } */
+        /* .navbar-collapse.collapse.show {
             background-color: white;
             
         }
@@ -60,7 +65,7 @@
 
         .navbar-collapse.collapse.show .nav-link.active{
             color: #3da540;       
-        }
+        } */
     </style>
     @stack('styles')
 </head>
