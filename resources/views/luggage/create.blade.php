@@ -59,7 +59,7 @@
         </div>
         
         <button type="button" class="btn btn-primary add-bag">Add Bag</button>
-        <button type="submit" class="btn btn-success mt-4">Submit</button>
+        <button type="submit" class="btn btn-outline-custom mt-4">Submit</button>
     </form>
 </div>
 

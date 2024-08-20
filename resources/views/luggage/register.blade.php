@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-outline-custom">Submit</button>
     </form>
 </div>
 @endsection
