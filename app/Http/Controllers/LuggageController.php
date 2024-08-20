@@ -43,8 +43,9 @@ class LuggageController extends Controller
     
     public function create(Request $request)
     {
-        $customer = Customer::findOrFail($request->customer_id);
-        return view('luggage.create', compact('customer'));
+        // $customer = Customer::findOrFail($request->customer_id);
+        // return view('luggage.create', compact('customer'));
+        return view('luggage.create');
     }
 
     
@@ -100,6 +101,8 @@ class LuggageController extends Controller
     
         // Generate the URL for the trip report
         $reportUrl = route('report.show', ['tripId' => $trip->id]);
+
+        //$trip->qr_code = $reportUrl;
     
         // Generate QR Code after luggage registration
         $qrCode = Builder::create()

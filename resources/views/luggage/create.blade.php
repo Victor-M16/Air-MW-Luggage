@@ -50,16 +50,15 @@
                             <label for="char3_0_0">Characteristic 3:</label>
                             <input type="text" id="char3_0_0" name="bags[0][items][0][char3]" class="form-control" required>
                         </div>
-                        <button type="button" class="btn btn-danger remove-item">Remove Item</button>
+                        <button type="button" class="btn btn-danger remove-item mt-2">Remove Item</button>
+                        <button type="button" class="btn btn-secondary add-item mt-2">Add Item</button>
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary add-item">Add Item</button>
                 <button type="button" class="btn btn-danger remove-bag">Remove Bag</button>
+                <button type="button" class="btn btn-primary add-bag">Add Bag</button>
             </div>
         </div>
-        
-        <button type="button" class="btn btn-primary add-bag">Add Bag</button>
-        <button type="submit" class="btn btn-outline-custom mt-4">Submit</button>
+        <button type="submit" class="btn btn-outline-custom">Submit</button>
     </form>
 </div>
 

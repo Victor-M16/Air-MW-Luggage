@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Trip;
 
 class CustomerController extends Controller
 {
@@ -25,10 +26,21 @@ class CustomerController extends Controller
         ]);
 
         // Create a new customer
-        $customer = Customer::create($validatedData);
+        $customer = Customer::firstOrCreate($validatedData);
+
+
+        // Create or find the trip
+        $trip = Trip::firstOrCreate(
+            [
+                'customer_id' => $customer->id,
+            ],
+            [
+                'ticket_number' => $validatedData['ticket_number'],
+            ]
+        );
 
         // Redirect to luggage registration
         return redirect()->route('luggage.create', ['customer_id' => $customer->id])
-                         ->with('status', 'Customer registered successfully! Please register your luggage.');
+                         ->with('status', 'Customer registered successfully! Please register your luggage, if any.');
     }
 }
