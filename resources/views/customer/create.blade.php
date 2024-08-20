@@ -57,7 +57,7 @@
             <input type="text" name="destination" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-outline-custom mt-2">Register</button>
     </form>
 </div>
 @endsection

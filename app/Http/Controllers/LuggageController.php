@@ -16,7 +16,6 @@ class LuggageController extends Controller
 
     public function index()
     {
-        // Display a list of luggage items or a form to add new items
         return view('luggage.index');
     }
 
