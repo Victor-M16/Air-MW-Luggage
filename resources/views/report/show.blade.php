@@ -7,11 +7,13 @@
   <h1>Trip Report</h1>
 
 <h2>Customer Details</h2>
-<p><strong>Name:</strong> {{ $trip->customer->name }}</p>
+<p><strong>Name:</strong> {{ $trip->customer->firstname }} {{ $trip->customer->surname }}</p>
 <p><strong>Email:</strong> {{ $trip->customer->email }}</p>
 
 <h2>Trip Details</h2>
 <p><strong>Ticket Number:</strong> {{ $trip->ticket_number }}</p>
+<p><strong>Departure:</strong> {{ $trip->departure_point }}</p>
+<p><strong>Destination:</strong> {{ $trip->destination }}</p>
 
 <h3>Luggage Details</h3>
 @foreach ($trip->bags as $bag)
