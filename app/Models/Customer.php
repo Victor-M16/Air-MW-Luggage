@@ -24,9 +24,9 @@ class Customer extends Model
         'destination',
     ];
     
-    // Other model methods and properties
-    // public function trips()
-    // {
-    //     return $this->hasMany(Trip::class);
-    // }
+    //Other model methods and properties
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
 }

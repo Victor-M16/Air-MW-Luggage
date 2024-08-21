@@ -10,9 +10,9 @@ class Bag extends Model
     use HasFactory;
 
     // Define the relationship with the Customer model
-    public function customer()
+    public function trip()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Trip::class);
     }
 
     // Define the relationship with the Bag model
