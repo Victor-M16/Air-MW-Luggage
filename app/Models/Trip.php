@@ -17,6 +17,8 @@ class Trip extends Model
     protected $fillable = [
         'customer_id',
         'ticket_number',
+        'departure_point',
+        'destination',
         'qr_code',
     ];
     

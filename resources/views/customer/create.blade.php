@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Ticket Register')
+
 @section('content')
 <div class="container">
     <h2>Buy A Ticket</h2>
@@ -40,11 +42,6 @@
         <div class="form-group">
             <label for="phone_number">Phone Number</label>
             <input type="text" name="phone_number" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-            <label for="ticket_number">Ticket Number</label>
-            <input type="text" name="ticket_number" class="form-control" required>
         </div>
 
         <div class="form-group">

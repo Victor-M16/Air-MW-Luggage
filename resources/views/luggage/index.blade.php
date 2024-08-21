@@ -15,41 +15,18 @@
 </div>
 
 <div class="row mt-2">
-<div class="card" style="width: 18rem; margin: 1rem;">
-    <img src="{{ asset('storage/qrcodes/VM-01.png') }}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">VM-01</h5>
-        <p class="card-text">Scan the QR Code to view Trip details</p>
-        <a href="#" class="btn btn-outline-custom">View Luggage</a>
-    </div>
-</div>
 
-<div class="card" style="width: 18rem; margin: 1rem;">
-    <img src="{{ asset('storage/qrcodes/VM-01.png') }}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">VM-01</h5>
-        <p class="card-text">Scan the QR Code to view Trip details</p>
-        <a href="#" class="btn btn-outline-custom">View Luggage</a>
-    </div>
-</div>
+    @foreach($trips as $trip)
+        <div class="card" style="width: 18rem; margin: 1rem;">
+            <img src="{{ asset('storage/' . $trip->qr_code) }}" class="card-img-top" alt="QR Code">
+            <div class="card-body">
+                <h5 class="card-title">{{ $trip->ticket_number }}</h5>
+                <p class="card-text">Departure: {{ $trip->departure_point }}<br>Destination: {{ $trip->destination }}</p>
+                <a href="{{ route('report.show', ['tripId' => $trip->id]) }}" class="btn btn-outline-custom">View Report</a>
+            </div>
+        </div>
+    @endforeach
 
-<div class="card" style="width: 18rem; margin: 1rem;">
-    <img src="{{ asset('storage/qrcodes/VM-01.png') }}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">VM-01</h5>
-        <p class="card-text">Scan the QR Code to view Trip details</p>
-        <a href="#" class="btn btn-outline-custom">View Luggage</a>
-    </div>
-</div>
-
-<div class="card" style="width: 18rem; margin: 1rem;">
-    <img src="{{ asset('storage/qrcodes/VM-01.png') }}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">VM-01</h5>
-        <p class="card-text">Scan the QR Code to view Trip details</p>
-        <a href="#" class="btn btn-outline-custom">View Luggage</a>
-    </div>
-</div>
 </div>
 
 

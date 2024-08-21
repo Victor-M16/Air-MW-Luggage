@@ -16,7 +16,9 @@ class LuggageController extends Controller
 
     public function index()
     {
-        return view('luggage.index');
+        Log::info("Showing Index");
+        $trips = Trip::all(); // Fetch all trips from the database
+        return view('luggage.index', ['trips' => $trips]);
     }
 
     public function searchForm()
@@ -43,8 +45,6 @@ class LuggageController extends Controller
     
     public function create(Request $request)
     {
-        // $customer = Customer::findOrFail($request->customer_id);
-        // return view('luggage.create', compact('customer'));
         return view('luggage.create');
     }
 
@@ -63,18 +63,12 @@ class LuggageController extends Controller
             'bags.*.items.*.char3' => 'required|string',
         ]);
     
-        // Create or find the customer
-        $customer = Customer::firstOrCreate(['email' => $validatedData['email']]);
+        // Find the trip by ticket number
+        $trip = Trip::where('ticket_number', $validatedData['ticket_number'])->first();
     
-        // Create or find the trip
-        $trip = Trip::firstOrCreate(
-            [
-                'customer_id' => $customer->id,
-            ],
-            [
-                'ticket_number' => $validatedData['ticket_number'],
-            ]
-        );
+        if (!$trip) {
+            return redirect()->back()->with('error', 'Trip not found with the provided ticket number.');
+        }
     
         // Loop through each bag
         foreach ($validatedData['bags'] as $bagData) {
@@ -101,8 +95,6 @@ class LuggageController extends Controller
     
         // Generate the URL for the trip report
         $reportUrl = route('report.show', ['tripId' => $trip->id]);
-
-        //$trip->qr_code = $reportUrl;
     
         // Generate QR Code after luggage registration
         $qrCode = Builder::create()
@@ -117,5 +109,6 @@ class LuggageController extends Controller
     
         return redirect()->route('luggage.index')->with('status', 'Luggage registered and report generated successfully!');
     }
+    
         
 }
