@@ -61,6 +61,14 @@ php artisan migrate
 php artisan serve
 ```
 
+### Step 7: Serve the frontend 
+
+In another terminal, cd into the same directory and run: 
+
+```bash
+npm run dev
+```
+
 ## Usage
 
 1. Customer Ticket Purchase
