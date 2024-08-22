@@ -61,7 +61,7 @@ php artisan migrate
 php artisan serve
 ```
 
-##Usage
+## Usage
 
 1. Customer Ticket Purchase
 Customers can buy tickets by entering their details, including their email, departure point, and destination. Even if the customer has previously purchased a ticket, they can buy a new one with a unique ticket number.
@@ -87,7 +87,8 @@ database/migrations/: Contains the database migration files.
 - Issue: Error related to ticket number or trip not found.
 
 - Solution: Ensure the ticket number is unique and properly linked to a trip. Check the database for consistency.
-Issue: QR Code is not generating.
+
+- Issue: QR Code is not generating.
 
 - Solution: Verify that the qrcodes directory exists in storage/app/public/. Make sure the required QR code package is installed and correctly configured.
 
