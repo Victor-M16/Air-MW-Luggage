@@ -25,8 +25,13 @@ This project is a web-based application designed to handle ticket purchases, lug
 ### Step 1: Clone the repository
 
 ```bash
+git clone https://github.com/Victor-M16/Air-MW-Luggage.git
+cd Air-MW-Luggage
+```
+
+### Step 2: Install dependencies
+
+```bash
 git clone https://github.com/yourusername/luggage-ticket-system.git
 cd luggage-ticket-system
 ```
-
-### Step 2: Install Requirements
