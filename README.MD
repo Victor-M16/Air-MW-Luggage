@@ -27,3 +27,6 @@ This project is a web-based application designed to handle ticket purchases, lug
 ```bash
 git clone https://github.com/yourusername/luggage-ticket-system.git
 cd luggage-ticket-system
+```
+
+### Step 2: Install Requirements
