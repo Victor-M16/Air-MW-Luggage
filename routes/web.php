@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 use App\Http\Controllers\LuggageController;
 use App\Http\Controllers\CustomerController;
@@ -13,10 +13,8 @@ use App\Http\Controllers\ReportController;
 Route::get('/customers/create', [CustomerController::class, 'create'])->name('customer.create');
 Route::post('/customers/create', [CustomerController::class, 'store'])->name('customer.store');
 
-
 // Route to display the form or list of luggage items
-Route::get('/luggage', [LuggageController::class, 'index'])->name('luggage.index');
-
+Route::get('/', [LuggageController::class, 'index'])->name('luggage.index');
 
 Route::get('/luggage/create', [LuggageController::class, 'create'])->name('luggage.create');
 
