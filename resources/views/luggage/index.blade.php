@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home Page')
+@section('title', 'Home')
 
 @section('content')
 <div class="row" style="margin: 1rem">

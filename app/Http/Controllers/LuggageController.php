@@ -17,7 +17,7 @@ class LuggageController extends Controller
     public function index()
     {
         Log::info("Showing Index");
-        $trips = Trip::all(); // Fetch all trips from the database
+        $trips = Trip::all(); 
         return view('luggage.index', ['trips' => $trips]);
     }
 
@@ -74,7 +74,7 @@ class LuggageController extends Controller
         foreach ($validatedData['bags'] as $bagData) {
             $bag = new Bag();
             $bag->bag_description = $bagData['description'];
-            $bag->trip_id = $trip->id; // Link the bag to the trip
+            $bag->trip_id = $trip->id;
             $bag->save();
     
             // Loop through each item in the bag
@@ -98,7 +98,7 @@ class LuggageController extends Controller
     
         // Generate QR Code after luggage registration
         $qrCode = Builder::create()
-            ->data($reportUrl) // Encode the report URL
+            ->data($reportUrl) 
             ->size(300)
             ->margin(10)
             ->build();
